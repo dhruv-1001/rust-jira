@@ -1,5 +1,4 @@
-mod ticket;
-mod store;
+pub mod models;
 
 fn main() {
     println!("Hello, world!");
