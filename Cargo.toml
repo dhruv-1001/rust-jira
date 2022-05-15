@@ -10,5 +10,5 @@ fake = { version = "2" }
 structopt = { version = "0.3", features = ["paw"] }
 paw = "1"
 directories = "2"
-serde = { version = "1", features = ["derive"] }
+serde = { version = "1", features = ["derive"], export = true }
 serde_yaml = "0.8"
