@@ -39,4 +39,5 @@ pub enum Status {
     Done,
 }
 
+#[derive(PartialEq, Debug)]
 pub struct DeletedTicket(pub Ticket);
