@@ -1,4 +1,5 @@
 use crate::models::{Comment, DeletedTicket, Status, Ticket, TicketDraft, TicketId, TicketPatch};
+use chrono::Utc;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -19,12 +20,15 @@ impl TicketStore {
 
     pub fn create(&mut self, draft: TicketDraft) -> TicketId {
         let id = self.generate_id();
+        let timestamp = Utc::now();
         let ticket = Ticket {
             id,
             title: draft.title,
             description: draft.description,
             status: Status::ToDo,
-            comments: Vec::new()
+            comments: Vec::new(),
+            created_at: timestamp.clone(),
+            updated_at: timestamp,
         };
         self.data.insert(id, ticket);
         id
@@ -46,9 +50,11 @@ impl TicketStore {
         self.data.get_mut(&id).map(|t| {
             if let Some(title) = patch.title {
                 t.title = title;
+                t.updated_at = Utc::now();
             }
             if let Some(description) = patch.description {
                 t.description = description;
+                t.updated_at = Utc::now();
             }
         })
     }

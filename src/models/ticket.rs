@@ -1,4 +1,5 @@
 use crate::models::{Comment, Title};
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::fmt::Error;
 use std::fmt::Formatter;
@@ -12,6 +13,8 @@ pub struct Ticket {
     pub description: String,
     pub status: Status,
     pub comments: Vec<Comment>,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 impl std::fmt::Display for Ticket {
