@@ -5,7 +5,7 @@ use std::fmt::Formatter;
 
 pub type TicketId = u64;
 
-#[derive(PartialEq, Debug, Clone, Hash, Eq)]
+#[derive(PartialEq, Debug, Clone, Hash, Eq, Serialize, Deserialize)]
 pub struct Ticket {
     pub id: TicketId,
     pub title: Title,
